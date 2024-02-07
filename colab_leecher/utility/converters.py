@@ -250,7 +250,7 @@ async def extract(zip_filepath, remove: bool):
 async def splitArchive(file_path, max_size):
     global Paths, BOT, MSG, Messages
     _, filename = ospath.split(file_path)
-    new_path = f"{Paths.temp_zpath}/{filename}"
+    new_path, ext = ospath.splitext(f"{Paths.temp_zpath}/{filename}")
     Messages.status_head = f"<b>✂️ SPLITTING » </b>\n\n<code>{filename}</code>\n"
     # Get the total size of the file
     total_size = ospath.getsize(file_path)
@@ -263,8 +263,7 @@ async def splitArchive(file_path, max_size):
         bytes_written = 0
         while chunk:
             # Generate filename for this chunk
-            ext = str(i).zfill(3)
-            output_filename = "{}.{}".format(new_path, ext)
+            output_filename = f"{new_path}.{i[:03]}{ext}"
 
             # Write chunk to file
             with open(output_filename, "wb") as out:
