@@ -19,6 +19,7 @@ async def aria2_Download(link: str, num: int):
     command = [
         "aria2c",
         "-x16",
+        "-s64",
         "--seed-time=0",
         "--summary-interval=1",
         "--max-tries=3",
