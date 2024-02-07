@@ -263,7 +263,7 @@ async def splitArchive(file_path, max_size):
         bytes_written = 0
         while chunk:
             # Generate filename for this chunk
-            output_filename = f"{new_path}.{i[:03]}{ext}"
+            output_filename = f"{new_path}.part{i:03}{ext}"
 
             # Write chunk to file
             with open(output_filename, "wb") as out:
